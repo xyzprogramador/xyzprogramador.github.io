@@ -1,66 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Sword Fights on the Heights</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: #0d0d0d;
       font-family: 'Press Start 2P', monospace;
       color: #00ff90;
       padding: 20px;
       text-shadow: 1px 1px 0 #000;
+      overflow-x: hidden;
     }
+
     .banner {
       text-align: center;
       margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-out;
     }
+
     .banner img {
       max-width: 100%;
       height: auto;
       border: 4px solid #00ff90;
       border-radius: 8px;
+      box-shadow: 0 0 20px #00ff90;
     }
+
     .container {
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       border: 4px solid #00ff90;
       padding: 20px;
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
       border-radius: 8px;
+      animation: fadeIn 2s ease-in;
     }
-    h1 {
+
+    h1, h2 {
       color: #ffffff;
-      font-size: 22px;
+      font-size: 20px;
       text-align: center;
       margin-bottom: 15px;
     }
+
     .section, .creators {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
+
     .section-title {
       color: #ffcc00;
-      margin-bottom: 5px;
-      font-size: 12px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-align: center;
     }
+
     .value {
       background: #111;
       border: 2px dashed #00ff90;
-      padding: 10px;
+      padding: 15px;
       font-size: 12px;
+      line-height: 2;
+      animation: blinkBorder 1s infinite alternate;
     }
+
     .divider {
       text-align: center;
       margin: 20px 0;
       color: #ff4444;
       font-size: 14px;
     }
+
     .creators-item {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
+      animation: fadeInUp 1s ease-in;
     }
+
     .creators-item img {
       width: 48px;
       height: 48px;
@@ -68,14 +90,55 @@
       border: 2px solid #00ff90;
       border-radius: 4px;
     }
+
     .creators-item span {
       font-size: 12px;
+      color: #fff;
     }
+
+    .music-toggle {
+      display: block;
+      margin: 10px auto 20px;
+      padding: 10px 20px;
+      background-color: #ffcc00;
+      color: #000;
+      font-size: 12px;
+      border: 2px solid #fff;
+      cursor: pointer;
+      border-radius: 6px;
+      font-family: 'Press Start 2P', monospace;
+    }
+
     footer {
       text-align: center;
       font-size: 10px;
       margin-top: 20px;
       color: #888;
+    }
+
+    .terminal-blink::after {
+      content: "_";
+      animation: blink 0.8s step-start infinite;
+      margin-left: 3px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @keyframes blinkBorder {
+      from { border-color: #00ff90; }
+      to { border-color: #004d36; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -86,31 +149,23 @@
   </div>
 
   <div class="container">
-    <h1>⚔️ SWORD FIGHTS ON THE HEIGHTS</h1>
+    <h1 class="section-title">⚔️ SWORD FIGHTS ON THE HEIGHTS</h1>
 
-    <div class="section">
-      <div class="section-title">RADMIN SERVER:</div>
-      <div class="value">Novetus Hosters</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">RADMIN PASSWORD:</div>
-      <div class="value">novetus</div>
-    </div>
+    <button class="music-toggle" onclick="toggleMusic()">🎵 Toggle Music</button>
+    <audio id="bgm" loop>
+      <source src="https://files.catbox.moe/k6pj3y.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="divider"><b>------</b></div>
-<br><br>
+
     <div class="section">
-      <div class="value">
-       RADMIN SERVER: Novetus Hosters<br>
-RADMIN SERVER PASSWORD: novetus<br>
-**------**<br><br>
+      <div class="value terminal-blink">
 📥 Client: 2011M  <br>
 💻 IP: inside-chemical.gl.at.ply.gg <br> 
 🆔 Port: 3729  <br>
 ⚔️ Map: Sword Fights On The Heights - IV The Fate Of Destiny.rbxl  <br>
 📞 Players: 20 (MAX PLAYERS) <br>
-📣 Version: Novetus 1.3 v3.2024.2<br><br>
+📣 Version: Novetus 1.3 v3.2024.2
       </div>
     </div>
 
@@ -133,9 +188,20 @@ RADMIN SERVER PASSWORD: novetus<br>
     </div>
 
     <footer>
-      Thank you, Shedletsky, you will be always remembered. | © 2025 XYZ
+      Thank you, Shedletsky, you will always be remembered. | © 2025 Retroverse Studios
     </footer>
   </div>
+
+  <script>
+    function toggleMusic() {
+      const music = document.getElementById('bgm');
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
 
 </body>
 </html>
