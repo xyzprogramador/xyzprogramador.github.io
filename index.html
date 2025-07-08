@@ -25,8 +25,19 @@
 
     nav a {
       color: #00ff90;
-      margin: 0 15px;
+      margin: 0 10px;
+      padding: 8px 16px;
       text-decoration: none;
+      border: 2px solid #00ff90;
+      border-radius: 6px;
+      transition: all 0.2s ease-in-out;
+      display: inline-block;
+      font-size: 10px;
+    }
+
+    nav a:hover {
+      background-color: #00ff90;
+      color: #000;
     }
 
     .banner {
@@ -120,6 +131,22 @@
       font-family: 'Press Start 2P', monospace;
     }
 
+    .download-btn {
+      display: block;
+      margin: 10px auto 30px;
+      padding: 10px 20px;
+      background-color: #00ff90;
+      color: #000;
+      font-size: 12px;
+      border: 2px solid #fff;
+      cursor: pointer;
+      border-radius: 6px;
+      text-align: center;
+      font-family: 'Press Start 2P', monospace;
+      text-decoration: none;
+      width: max-content;
+    }
+
     footer {
       text-align: center;
       font-size: 10px;
@@ -168,8 +195,10 @@
     <h1 class="section-title">⚔️ SWORD FIGHTS ON THE HEIGHTS</h1>
 
     <button class="music-toggle" onclick="toggleMusic()">🎵 Toggle Music</button>
-    <audio id="bgm" loop>
-      <source src="https://files.catbox.moe/k6pj3y.mp3" type="audio/mpeg">
+    <a class="download-btn" href="https://github.com/Novetus/Novetus-Archive/releases/latest/download/Novetus.zip" target="_blank">⬇️ Download Novetus</a>
+
+    <audio id="bgm" autoplay loop>
+      <source src="storm-clouds-purpple-cat(chosic.com).mp3" type="audio/mpeg">
     </audio>
 
     <div class="divider"><b>------</b></div>
@@ -204,19 +233,31 @@
     </div>
 
     <footer>
-      Thank you, Shedletsky, you will always be remembered. | © 2025 caique9014
+      Thank you, Shedletsky, you will always be remembered. | © 2025 Retroverse Studios
     </footer>
   </div>
 
   <script>
+    const music = document.getElementById('bgm');
+
     function toggleMusic() {
-      const music = document.getElementById('bgm');
       if (music.paused) {
         music.play();
       } else {
         music.pause();
       }
     }
+
+    // Try autoplay without user interaction
+    window.addEventListener("load", () => {
+      music.volume = 0.3;
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Some browsers block autoplay
+        });
+      }
+    });
   </script>
 
 </body>
